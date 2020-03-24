@@ -1,0 +1,180 @@
+JavaScript 的对象：
+
+Number 对象:让你处理数字值的对象。
+
+String 对象:用于处理已有的字符块。
+
+Date 对象:用于处理日期与时间。
+
+Math 对象:用于执行数学任务。
+
+Number 对象:是原始数值的包装对象。
+
+String 对象;用于处理文本（字符串）。
+
+RegExp 对象:正则表达式是描述字符模式的对象。
+
+Array 对象:用于在变量中存储多个值:
+
+Window 对象:表示浏览器中打开的窗口。
+
+Navigator 对象:包含有关浏览器的信息。
+
+Screen 对象:包含有关客户端显示屏幕的信息。
+
+History 对象:包含用户访问过的 URL。
+
+Location 对象:包含有关当前 URL 的信息。
+
+Document 对象：当浏览器载入 HTML 文档, 它就会成为 document 对象。
+
+Attr 对象：在 HTML DOM 中, Attr 对象 代表一个 HTML 属性。HTML属性总是属于HTML元素。
+
+NamedNodeMap 对象:在 HTML DOM 中, the NamedNodeMap 对象 表示一个无顺序的节点列表。我们可通过节点名称来访问 NamedNodeMap 中的节点。
+
+HTML DOM 事件对象:HTML DOM 事件允许Javascript在HTML文档元素中注册不同事件处理程序。事件通常与函数结合使用，函数不会在事件发生前被执行！
+
+Anchor 对象:表示 HTML 超链接。
+
+Area 对象代表图像映射的一个区域
+
+Audio 对象代表着 HTML <audio> 元素。
+
+Object 对象表示一个 HTML <object> 元素。
+
+Blockquote 对象代表着一个 HTML 引用(blockquote)块元素。
+
+Body 对象代表了 HTML body 元素。代表文档的主体
+
+Button 对象代表一个按钮
+
+Canvas 对象是标签用于绘制图像
+
+Column 对象是HTML table（表格）中的列。
+
+Frameset 对象代表 HTML 框架集。
+
+Image 对象代表嵌入的图像。
+
+ins 对象代表了一个已经被插入HTML文档中的文本。<ins> 元素定义已经被插入文档中的文本。
+
+Button 对象代表 HTML 文档中的一个按钮。该元素没有默认的行为，但是必须有一个 onclick 事件句柄以便使用。
+在 HTML 文档中 <input type="button"> 标签每出现一次，一个 Button 对象 就会被创建。
+
+Checkbox 对象代表一个 HTML 表单中的 一个选择框。在 HTML 文档中 <input type="checkbox"> 每出现一次，Checkbox 对象就会被创建。
+
+Input Color 对象代表了使用 type="color"属性的 HTML <input> 元素 。
+
+Input Date 对象表示使用了 type="date" 属性的 HTML <input> 元素 。
+
+Input Datetime 对象表示使用 type="datetime" 属性的HTML <input> 元素。
+
+Input DatetimeLocal 对象表示使用 type="datetime-local" 的 HTML <input> 元素。 
+
+Input DatetimeLocal 对象表示使用 type="email" 的 HTML <input> 元素。
+
+FileUpload 对象
+在 HTML 文档中 <input type="file"> 标签每出现一次，一个 FileUpload 对象就会被创建。
+该元素包含一个文本输入字段，用来输入文件名，还有一个按钮，用来打开文件选择对话框以便图形化选择文件。
+
+Hidden 对象代表一个 HTML 表单中的某个隐藏输入域。
+
+Input Image 对象表示使用 type="image"元素的 HTML <input> 元素。
+
+Input Month 对象表示使用type="month" 的 HTML <input> 元素。
+
+Input Number 对象表示使用type="number" 的 HTML <input> 元素。
+
+Input Range 对象表示使用 type="range" 属性的 HTML <input> 元素。Password 对象代表 HTML 表单中的密码字段。
+HTML 的 <input type="password"> 标签在表单上每出现一次，一个 Password 对象就会被创建。
+
+Radio 对象代表 HTML 表单中的单选按钮。
+在 HTML 表单中 <input type="radio"> 每出现一次，一个 Radio 对象就会被创建。
+
+Reset 对象
+在 HTML 表单中 <input type="reset"> 标签每出现一次，一个 Reset 对象就会被创建。
+当重置按钮被点击，包含它的表单中所有输入元素的值都重置为它们的默认值。默认值由 HTML value 属性或 JavaScript 的 defaultValue 属性指定。
+
+Input Search 对象表示使用 type="search" 的 HTML <input> 元素。
+
+Submit 对象代表 HTML 表单中的一个提交按钮 (submit button)。
+在 HTML 表单中 <input type="submit"> 标签每出现一次，一个 Submit 对象就会被创建。
+在表单提交之前，触发 onclick 事件句柄，并且一个句柄可以通过返回 fasle 来取消表单提交。
+
+Input Text 对象代表 HTML 中 type="text" 的 <input> 元素。
+
+Input Time 对象表示使用 type="time" 属性的 HTML <input> 元素。
+
+Input URL 对象表示使用 type="url" 属性的 HTML <input> 元素。
+
+Input Week 对象表示使用 type="week" 属性的 HTML <input> 元素。
+
+Keygen 对象代表着HTML form表单的 keygen 字段。在 HTML 文档中的每个 <keygen> 标签都能创建一个 Keygen 对象。
+你可以通过form 表单的elements[]数组来搜索 keygen 字段，或者使用 document.getElementById()。
+
+Link 对象代表某个 HTML 的 <link> 元素。<link> 元素可定义两个链接文档之间的关系。
+<link> 元素被定义于 HTML 文档的 head 部分。
+
+Label 对象表示一个 HTML <keygen> 元素。
+
+Legend 对象表示一个 HTML <legend> 元素。
+
+Li 对象表示一个 HTML <li> 元素。
+
+Map 对象表示 HTML <map> 元素。
+
+Menu 对象表示 HTML <menu> 元素。
+
+MenuItem 对象表示 HTML <menuitem> 元素。
+
+Meta 对象代表 HTML 的 一个 <meta> 元素。
+<meta> 元素可提供有关某个 HTML 元素的元信息 (meta-information)，比如描述、针对搜索引擎的关键词以及刷新频率。
+
+Meter 对象表示一个 HTML <meter> 元素。
+
+Ol 对象表示一个 HTML <ol> 元素。
+
+Option 对象代表 HTML 表单中下拉列表中的一个选项。
+在 HTML 表单中 <option> 标签每出现一次，一个 Option 对象就会被创建。
+您可通过表单的 elements[] 数组访问一个 Option 对象，或者通过使用 document.getElementById()。
+
+OptionGroup 对象表示一个 HTML <optgroup> 元素。
+
+Parameter 对象表示 HTML <param> 元素。
+<param> 元素用于定义 <object> 元素中嵌入插件的参数。
+
+Progress 对象表示一个 HTML <progress> 元素。
+<progress> 元素表示任务的进度。
+
+Script 对象表示一个 HTML <script> 元素。
+
+Select 对象代表 HTML 表单中的一个下拉列表。
+在 HTML 表单中，<select> 标签每出现一次，一个 Select 对象就会被创建。
+您可通过遍历表单的 elements[] 数组来访问某个 Select 对象，或者使用 document.getElementById()。
+
+Source 对象表示一个 HTML <source> 元素。
+
+Style 对象表示一个个别的样式声明。Table 对象代表一个 HTML 表格。
+
+在 HTML 文档中 <table> 标签每出现一次，一个 Table 对象就会被创建。
+
+td 对象代表了 HTML 中数据单元。
+在 HTML 表格中每个 <td> 标签都会创建一个 td 对象。
+
+th 对象代表了 HTML 标准中的表头单元。
+HTML 中每个 <th> 标签都会创建一个 th 对象。
+
+TableHeader 对象：表示一个 HTML <th> 元素。
+
+tr 对象：代表了 HTML 表格的行。
+HTML文档中出现一个 <tr> 标签，就会创建一个tr对象。
+
+Textarea 对象：代表 HTML 表单中的一个文本域 (text-area)。
+HTML 表单的每一个 <textarea> 标签，都能创建一个Textarea 对象。
+您可以通过索引相应表单的元素数组来访问某个 Textarea 对象，或者使用 getElementById()。
+
+Time 对象：表示一个 HTML <time> 元素。
+
+Video 对象：表示 HTML <video> 元素。 
+
+Track 对象：表示 HTML <track> 元素。
