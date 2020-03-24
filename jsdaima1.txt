@@ -1,0 +1,6 @@
+window.onload = test();
+
+function test(){
+    window.alert("页面错误");
+}
+
