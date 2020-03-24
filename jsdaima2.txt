@@ -1,0 +1,6 @@
+var r = confirm("请确认按钮");
+if (r == true){
+    x = "按确认";
+}else{
+    x = "按取消";
+}
