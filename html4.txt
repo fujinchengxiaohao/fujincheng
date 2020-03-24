@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script type="text/javascript" language="javascript">
+    window.onload = init;
+
+    function init(){
+        var btnOK = document.getElementById("btnOK");   
+        btnOK.onclick = btnClick;
+    }
+
+    //innerText  innerHTML
+    function btnClick(){
+        var spanInfo = document.getElementById("spanInfo"); 
+        spanInfo.innerText = "<button>1234<button>";
+        //spanInfo.innerHTML = "你点击了OK按钮";
+
+       // document.getElementById("spanInfo").innerHTML = "1111";
+    }
+</script>
+<style>
+    #btnOK{
+      color:red;  
+    }
+    button{
+        font-size: 20px;
+    }
+</style>
+<body>
+    <button id="btnOK">OK</button>
+    <button id="btnCancel">Cancel</button>
+    <input  id="inputSubmit" type="button" value="Submit" />
+    <br />
+    <span id="spanInfo">提示信息</span>
+</body>
+</html>

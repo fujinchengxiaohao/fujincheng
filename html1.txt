@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS第一节课</title>
+</head>
+<script>
+    
+//document.write("I love you.");
+//document.write("<br/>");
+//document.write(document.title);
+</script>
+<script src="../JS/JS1.js"></script>
+<body>
+    <button>cancel</button>
+</body>
+</html>   

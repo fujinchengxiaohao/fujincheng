@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script type="text/javascript" language="javascript">
+    window.onload = init;
+
+    function init(){
+        var btnOK = document.getElementById("btnOK");
+        var btnCancel = document.getElementById("btnCancel");
+        var inputSubmit = document.getElementById("inputSubmit");
+        //自学另外的几种获取元素的方法
+         //事件监听器
+        btnOK.onclick = btnClick;
+        btnCancel.onmouseover = btnMouseOver;
+        inputSubmit.ondblclick = inputdblClick;
+    }
+    
+    function btnMouseOver(){
+        var  flag; //tag   
+
+        flag = confirm("你把鼠标移动到了Cancel上");   
+        if(flag == true)
+        {
+            window.alert("你选择了确定");
+        }else{
+            window.alert("你选择了取消");
+        }
+    }
+
+    function inputdblClick(){
+        window.prompt("真的还是假的","假的");
+    }
+
+    function btnClick(){
+        window.alert("你点击了OK");
+    }
+</script>
+<style>
+    #btnOK{
+      color:red;  
+    }
+    button{
+        font-size: 20px;
+    }
+</style>
+<body>
+    <button id="btnOK">OK</button>
+    <button id="btnCancel">Cancel</button>
+    <input  id="inputSubmit" type="button" value="Submit" />
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>     
+</head>
+<script type="text/javascript">
+$(document).ready(function(){
+  $("button").mouseover(function(){
+    $("button").css("background-color","white");
+  });
+  $("button").mouseout(function(){
+    $("button").css("background-color","blue");
+  });
+});
+</script>
+<script type="text/javascript" language="javascript">
+    window.onload = init;
+    function init(){var btnOK = document.getElementById("btnOK");
+        btnOK.onclick = btnClick;}
+    function btnClick(){window.alert("你点击了OK");}
+</script>
+<script>
+    function checkForm()
+    {alert("页面错误");}
+    </script>
+<style>
+    #btnOK{color:red;  }
+    button{font-size:20px;}
+</style>
+<body>
+    <button id="btnOK">OK</button>
+    <button style="background-color:white">Cancel</button>
+    <form action="demo_form.php" onsubmit="checkForm()">
+    <input type="Submit" value="Submit">
+</body>
+<ml>
