@@ -1,0 +1,78 @@
+--管理数据库
+--1。打开数据库
+--use 数据库名
+use mydb
+--2。查看数据信息
+--sp_helpdb 数据库名
+sp_helpdb mydb
+go
+--3。重命名数据库
+--sp_renamedb '原名','新名'
+sp_renamedb 'aaa', 'mydb'
+go
+--4。修改数据库
+--（1）添加辅助数据文件（日志文件）
+--alter database 数据库名
+--add file (name='逻辑名',
+--filename='物理文件名',
+-- size=初始大小,
+-- maxsiz=最大,
+-- filegrowth=增长量
+-- )
+--（2）添加日志文件
+--alter database 数据库名
+--add log file (name='逻辑名',
+--filename='物理文件名',
+-- size=初始大小,
+-- maxsiz=最大,
+-- filegrowth=增长量
+-- )
+--给mydb数据库添加一个日志文件，逻辑为mydb_log2,初始大小3mb，
+--最大20mb,保存在mysql文件夹。
+alter database mydb 
+add log file( 
+name = 'mydb_log4', 
+filename = 'f:\MySQL\mydb_log4.ldf',
+ size = 3mb, 
+ maxsize = 20mb,
+  filegrowth = 10% ),
+(name = 'mydb_log5', 
+filename = 'f:\MySQL\mydb_log5.ldf'
+)
+ go 
+ --(3)删除文件
+ --alter database 数据库名
+ --remove file 文件名
+
+ alter database mydb
+ remove file mydb_log3
+ --(4)修改文件
+ --alter database 数据库名
+ --modify file
+ --(name=逻辑名,
+  --size=初始大小，
+  --maxsize=最大，
+  --filegrowth=增长量
+  --）
+  alter database mydb
+  modify file
+  (name='mydb_log2',
+  size=4mb,
+  maxsize=20mb,
+  filegrowth=2mb
+  )
+ sp_helpdb mydb
+ --5。删除数据库
+--drop database 数据库名
+--create,alter,drop定义语句
+--6。分离数据库
+EXEC sp_detach_db @dbname=mydb
+--7。附加数据库
+EXEC sp_attach_db @dbname=mydb,
+@filename1='D:\mysql\mydb_data.mdf',
+	     （路径）    （文件名）
+@filename2='D:\mysql\mydb_log.ldf'
+	     （路径）    （文件名）
+--8。删除数据库
+drop database mydb
+sp_helpdb mydb
