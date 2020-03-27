@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>课堂代码</title>
+</head>
+<script>
+    window.onload = init;
+
+    function init(){
+    var inv = zhouZN(200,"1978926321",5);
+    window.alert("领导本月话费报销金额" + inv.amount + "元")
+    }
+    //amount:金额  phNUM :号码
+    function Invoice(amount,phNUM){
+        this.amount = amount;
+        this.phNUM = phNUM;
+    }
+
+    function zhouZN(money,phNUM,tip){
+        console.log("我周某人跑步去充话费");
+        var inv = new Invoice(money,phNUM);
+        return inv;
+    }
+</script>
+<body>
+    
+</body>
+</html>
