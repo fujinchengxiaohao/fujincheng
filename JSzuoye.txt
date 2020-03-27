@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作业</title>
+</head>
+<script>
+    window.onload = init;
+
+    function init(){
+    var NNe = taobao(200,"cbf1978926321","北京");
+    window.alert("您花费了" + NNe.money + "元" + "\n您的订单编号是" + NNe.slnum + "\n收货地址是" + NNe.place);
+    }
+    
+    //slnum:编号    //place：位置    //money：金额
+    function NewName(money,slnum,place){
+        this.money = money;
+        this.slnum = slnum;
+        this.place = place;
+    }
+
+    function taobao(money,slnum,place){
+        window.alert("淘宝下单");
+        var NNe = new NewName(money,slnum,place);
+        return NNe
+    }
+</script>
+<body>
+    
+</body>
+</html>
