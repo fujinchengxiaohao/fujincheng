@@ -1,0 +1,15 @@
+create table class
+(classno char(6) primary key,
+classrname varchar(30) not null,
+majorno char(4) constraint fk_xbbbh references major(majorno)
+) 
+go
+create table student
+(sno char(6) primary key,
+sname varchar(30) not null,
+ssex char(4),
+sbirth date,
+shome varchar(20),
+sdate date,
+classno char(6) constraint fk_xbbbbh references class(classno)
+) 
