@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ProgressBar</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        #progress{
+        position: relative;
+        margin: auto;
+        top: 200px;
+        display: block;
+        width: 200px;
+        height: 20px;
+        border-style: solid;
+        border-width: thin;
+        border-color: black
+        }
+       #bar{
+       position:absolute;
+       top: 0px;
+       left: 0px;
+       width: 0px;
+       height: 20px;
+       background: blue
+       }
+       #text-progress{
+       position: absolute;
+       top: 200px;
+       left: 500px;    
+       }
+       #btn{
+       position: absolute;
+       top: 240px;
+       left: 300px;    
+       }
+    </style>
+   
+</head>
+    <body>
+        <div id="progress">
+            <div id="bar"></div>
+        </div>
+        <div><h3 id="text-progress">0%</h3></div>
+        <input type="button" id="btn" value="点击开始" onclick="action()">
+    </body>
+    <script>
+        function action(){
+            var iSpeed = 1;
+            obj=setInterval(function(){
+                iSpeed += 1;
+                if(iSpeed>=100){    
+                    clearInterval(obj); 
+                    }
+                bar.style.width=iSpeed+'%';
+                document.getElementById('text-progress').innerHTML=iSpeed+'%';
+
+            },50);    
+        }
+        </script>
+</html>
