@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+</head>
+<script>
+    window.onload = init;
+    var inputs;
+    var spanInfo;
+   
+    function init(){
+        inputs = document.getElementsByTagName("input")
+        spanInfo = document.getElementById("spanInfo");
+        inputs[3].addEventListener("click",getValues); 
+    }
+    
+    //取出第一个文本框inputs[0]与第二个文本框inputs[2]的值，做指定计算，
+    //并将计算结果载入第三个文本框inputs[4]
+    //typeof  isNaN()  
+    function getValues(){
+        var num1,num2;
+        // num1 = parseFloat(inputs[0].value);
+        // num2 = parseFloat(inputs[2].value);
+        num1 = Number(inputs[0].value);
+        num2 = Number(inputs[2].value);
+
+        if(isNaN(num1) == true || isNaN(num2) == true)
+        {
+            inputs[0].value = "";
+            inputs[2].value = "";
+            inputs[4].value = "";
+            spanInfo.style.color = "red";
+            spanInfo.innerHTML = "请输入正确的数字";
+        }else{
+            spanInfo.style.color = "blue";
+            spanInfo.innerHTML = "输入正确";
+            inputs[4].value = calculate(num1,num2);
+        }
+    }
+
+    function calculate(num1,num2){
+        return num1 + num2;
+    }
+    //应用层  
+    //数据结构  操作系统  微机原理  计算机组成原理  Linux内核   
+</script>
+<body>
+    <form>
+        <input type="text"  >
+        <input type="button" value="+" >
+        <input type="text" >
+        <input type="button" value="=" >
+        <input type="text" >
+    </form> 
+    <span id="spanInfo"></span>  
+</body>
+</html>
