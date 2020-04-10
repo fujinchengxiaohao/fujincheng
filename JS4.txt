@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date</title>
+</head>
+<script>
+    window.onload = init;
+    var dateSpan ;
+
+    function init(){
+        dateSpan = document.getElementById("dateSpan");
+        showTime();
+    }
+    //如何自动让代码重复执行,一秒钟重复一次,周期性操作
+    //window.setInterval(showTime,1000);
+    
+    function showTime(){
+        var myDate = new Date();
+        var year = myDate.getFullYear();
+        var month = myDate.getMonth() + 1;
+        if(month<10) month = '0' + month;
+        var date = myDate.getDate();
+        if(date<10) date = '0' + date;
+        var day = myDate.getDay();
+        var hours = myDate.getHours();
+        var AMPM = hours >= 12 ? 'PM' : 'AM';
+        hours = hours % 12;
+        hours = hours ? hours : 12;
+        if(hours<10) hours = '0' + hours;
+        var mins = myDate.getMinutes();
+        if(mins<10) mins = '0' + mins;
+        var secs = myDate.getSeconds();
+        if(secs<10) secs = '0' + secs;
+
+        switch(day)
+        {
+            case 0: day = "日";break;
+            case 1: day = "一";break;
+            case 2: day = "二";break;
+            case 3: day = "三";break;
+            case 4: day = "四";break;
+            case 5: day = "五";break;
+            case 6: day = "六";break;
+        }
+  
+        dateSpan.innerHTML = year + "年" + month + "月" + date + "日" + "星期" + day + "<br/>" + AMPM + "&nbsp;&nbsp;" + hours + ":" + mins + ":" + secs;
+        window.setTimeout(showTime,1000);
+        //1.课堂代码功能更新
+        //2.做一个进度条
+    }
+</script>
+<body>
+    <span  id="dateSpan"></span>
+</body>
+</html>
