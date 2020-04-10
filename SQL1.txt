@@ -1,78 +1,33 @@
---管理数据库
---1。打开数据库
---use 数据库名
-use mydb
---2。查看数据信息
---sp_helpdb 数据库名
-sp_helpdb mydb
-go
---3。重命名数据库
---sp_renamedb '原名','新名'
-sp_renamedb 'aaa', 'mydb'
-go
---4。修改数据库
---（1）添加辅助数据文件（日志文件）
---alter database 数据库名
---add file (name='逻辑名',
---filename='物理文件名',
--- size=初始大小,
--- maxsiz=最大,
--- filegrowth=增长量
--- )
---（2）添加日志文件
---alter database 数据库名
---add log file (name='逻辑名',
---filename='物理文件名',
--- size=初始大小,
--- maxsiz=最大,
--- filegrowth=增长量
--- )
---给mydb数据库添加一个日志文件，逻辑为mydb_log2,初始大小3mb，
---最大20mb,保存在mysql文件夹。
-alter database mydb 
-add log file( 
-name = 'mydb_log4', 
-filename = 'f:\MySQL\mydb_log4.ldf',
- size = 3mb, 
- maxsize = 20mb,
-  filegrowth = 10% ),
-(name = 'mydb_log5', 
-filename = 'f:\MySQL\mydb_log5.ldf'
-)
- go 
- --(3)删除文件
- --alter database 数据库名
- --remove file 文件名
+--insert   update   deleted
+insert into 表名(字段1，字段2)
+values(表达式1,表达式2)
 
- alter database mydb
- remove file mydb_log3
- --(4)修改文件
- --alter database 数据库名
- --modify file
- --(name=逻辑名,
-  --size=初始大小，
-  --maxsize=最大，
-  --filegrowth=增长量
-  --）
-  alter database mydb
-  modify file
-  (name='mydb_log2',
-  size=4mb,
-  maxsize=20mb,
-  filegrowth=2mb
-  )
- sp_helpdb mydb
- --5。删除数据库
---drop database 数据库名
---create,alter,drop定义语句
---6。分离数据库
-EXEC sp_detach_db @dbname=mydb
---7。附加数据库
-EXEC sp_attach_db @dbname=mydb,
-@filename1='D:\mysql\mydb_data.mdf',
-	     （路径）    （文件名）
-@filename2='D:\mysql\mydb_log.ldf'
-	     （路径）    （文件名）
---8。删除数据库
-drop database mydb
-sp_helpdb mydb
+select * from major
+go
+--major表添加数据
+insert into major(majorno,majorname,deptno)
+values('1001','软件技术','01'),
+('1002','计算机网络技术','01'),
+('1003','云计算技术','01')
+go
+select * from major
+go
+--class表添加数据
+insert into class(classno,classname,majorno)
+values('100101','软件19-1','1001'),
+('100102','软件19-2','1001'),
+('100103','软件19-3','1001'),
+('100201','计网19-1','1002')
+go
+select * from class
+go
+insert into student(sno,sname,ssex.sbirth,shome,sdate,classno)
+values('193001','张明','男','2001-09-10','四川广元','2019-09-01','100101'),
+('193002','王丽丽','女','2001-10-02','四川成都','2019-09-01','100101'),
+('193003','刘天明','男','2002-09-01','四川广元','2019-09-01','100101'),
+('194001','李萍','女','2001-08-19','四川成都','2019-09-01','100201'),
+('194002','王刚','男','2002-09-03','四川广元','2019-09-01','100201'),
+('194003','谢天华','男','2000-09-10','四川广安','2019-09-01','100201')
+go
+select * from student
+
