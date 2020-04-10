@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date</title>
+</head>
+<script>
+    window.onload = init;
+    var dateSpan ;
+
+    function init(){
+        dateSpan = document.getElementById("dateSpan");
+        showTime();
+    }
+    //如何自动让代码重复执行,一秒钟重复一次,周期性操作
+    //window.setInterval(showTime,1000);
+    
+    function showTime(){
+        var myDate = new Date();
+        var year = myDate.getFullYear();
+        var month = myDate.getMonth() + 1;
+        var date = myDate.getDate();
+        var day = myDate.getDay();
+        var hours = myDate.getHours();
+        var mins = myDate.getMinutes();
+        var secs = myDate.getSeconds();
+
+        switch(day)
+        {
+            case 0: day = "日";break;
+            case 1: day = "一";break;
+            case 2: day = "二";break;
+            case 3: day = "三";break;
+            case 4: day = "四";break;
+            case 5: day = "五";break;
+            case 6: day = "六";break;
+        }
+
+        dateSpan.innerHTML = year + "年" + month + "月" + date + "日" + "星期" + day + " " + hours + ":" + mins + ":" + secs;
+        window.setTimeout(showTime,1000);
+        //1.课堂代码功能更新
+        //2.做一个进度条
+    }
+</script>
+<body>
+    <span  id="dateSpan">2020年4月7日星期二AM 09:33:02</span>
+</body>
+</html>
