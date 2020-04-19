@@ -1,0 +1,87 @@
+--1.创建数据库
+create database TSGL
+on primary
+(name='TSGL_DATA',
+filename='D:\mysql\TSGL_DATA.mdf',
+ size=5MB,
+ maxsize=10MB,
+ filegrowth=10%)
+ log on
+ (name = 'TSGL_LOG', 
+filename = 'D:\mysql\TSGL_LOG.ldf',
+ size = 1mb, 
+ maxsize = 5mb,
+  filegrowth = 1mb )
+  go
+--2.创建表
+create table book
+(Bkid char(6) primary key,
+Bkname varchar(30) not null,
+bauthor varchar(10),
+puhouse varchar(20),
+Pudate datetime,
+lndate datetime,
+Price int
+) 
+go
+--3.为表添加数据
+insert into book(Bkid,Bkname,bauthor,puhouse,Pudate,lndate,Price)
+values('F12.24','计算机文化基础','刘二','青山','2007-2-1','2007-10-1','21'),
+('F23.55','数据库基础教程','王二','蓝天','2005-6-1','2006-6-21','10'),
+('F33.33','ASP实用教程','梁五','碧水','2006-10-1','2007-3-15','22'),
+('F11.11','Java程序设计','张四','碧水','2007-4-1','2007-10-1','15'),
+('F11.22','软件工程','马一','青山','2005-8-4','2006-6-20','23'),
+('F12.08','C语言设计','张四','蓝天','2007-8-1','2008-1-20','22'),
+('F12.09','C语言设计','梁五','青山','2007-5-4','2007-10-1','22'),
+('F22.12','C语言设计','梁六','蓝天','2007-5-4','2008-1-20','30')
+go
+select * from book
+go
+--4.用book表生成一张新表book2
+select * into book2 from book
+go
+--5.将软件工程作者改为自己
+update book2 set bauthor='付金成'
+where Bkname='软件工程'
+go
+--将出版社为青山的图书下调5元
+update book2 set Price=Price-5
+where puhouse='青山'
+go
+--将含有C语言的图书出版社改为南山
+update book2 set puhouse='南山'
+where Bkname='C语言设计'
+go
+--将2007年出版的图书作者改为自己
+update book2 set bauthor='付金成'
+where Pudate>'2007' and Pudate<'2008'
+go
+--将单价大于30的图书出版社改为川信
+update book2 set puhouse='川信'
+where Price>'30'
+go
+--6.将书名为软件工程的图书出版社改为绿水
+update book2 set puhouse='绿水'
+where Bkname='软件工程'
+go
+--7.将定价大于22的图书下调5元
+update book2 set Price=Price-5
+where Price>22
+go
+--8.将青山出版社的图书价格上调5元
+update book2 set Price=Price+5
+where puhouse='青山'
+go
+--9.将书名为计算机文化基础的作者改为自己
+update book2 set bauthor='付金成'
+where Bkname='计算机文化基础'
+go
+--10.将碧水出版社的图书出版日期改为2016-10-1
+update book2 set Pudate='2016-10-1'
+where puhouse='碧水'
+go
+--11.将蓝天出版社的图书删除
+delete from book2
+where puhouse='蓝天'
+go
+select * from book2
