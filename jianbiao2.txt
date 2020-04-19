@@ -1,0 +1,30 @@
+create table teacher
+(tno char(6) primary key,
+tname varchar(10) not null,
+tsex char(2),
+tbirth date,
+prof varchar(10),
+graduate varchar(10),
+deptno char(2) constraint fk_dept references dept(deptno)
+) 
+go
+create table course
+(cno char(6) primary key,
+cname varchar(30) not null,
+credit tinyint,
+chour tinyint,
+begtime date
+) 
+go
+create table lesson
+(tno char(6),
+cno varchar(30)primary key(tno,cno),
+tplan varchar(50)
+)
+go
+create table scre
+(sno char(8),
+cno char(6)primary key(sno,cno),
+score tinyint
+)
+go
