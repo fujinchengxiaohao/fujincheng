@@ -1,0 +1,21 @@
+alter database mydb
+add file (name='mydb_data3',
+filename='D:\mysql\mydb_data3.ndf',
+size=3mb,
+maxsize=20mb)
+go
+alter database mydb
+modify file
+(name='mydb_data3',
+size=5mb,
+filegrowth=2mb)
+go
+alter database mydb
+remove file mydb_data3
+go
+EXEC sp_detach_db @dbname=mydb
+go
+EXEC sp_attach_db @dbname=mydb,
+@filename1='D:\mysql\mydb_data.mdf',
+@filename2='D:\mysql\mydb_log.ldf'
+go
