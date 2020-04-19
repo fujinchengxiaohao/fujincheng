@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #irc{
+      position: absolute;
+      top: 140px;
+      left: 300px;    
+      }
+      
+</style>
+<body>
+  <div id="irc"><img id = "img" src = "../HTML/图/图1.jpg"/></div>
+</body>
+<script>
+   var img = document.getElementById("img");
+   var arr = ["../HTML/图/图1.jpg","../HTML/图/图2.jpg","../HTML/图/图3.jpg","../HTML/图/图4.jpg"]; 
+   var i = 1;
+
+   setInterval(( function s(){
+       img.src = arr[i];
+       i++;
+       if(i > arr.length){
+           i=0;
+           img.src = arr[i];
+           i++;
+       }
+   }),2000);
+</script>
+</html>
