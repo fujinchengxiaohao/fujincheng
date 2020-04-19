@@ -1,0 +1,22 @@
+update student set shome='四川广安'
+where sname='王丽丽'
+go
+select * from student
+
+连续改一行多个数据
+update student set sbirth='2222-2-2',shome='四川南充'
+where sname='王丽丽'
+go
+
+连续改多行数据
+update student set sbirth='2222-2-2',shome='四川南充'
+where sname='王丽丽' or sname='王丽丽'
+go
+
+复制表
+select * into 新表名 from 表名
+select * into student2 from student
+go
+
+删除表
+delete from 表名
