@@ -1,0 +1,147 @@
+1。启动SSMS工具，首先要做的是什么？        答：检查服务打开没有
+2。如何开启数据库服务？                 答：1、SQL配置管理器（C:\Windows\SysWOW64）
+     				2、控制面板----管理工具-----服务----SQL Server服务
+    				3、我的电脑----管理----服务----SQL Server服务
+
+什么是数据？		        答:   	数据(data)是事实或观察的结果，是对客观事物的逻辑归纳，是用于表示客观事物的未经加工的原始素材。
+				数据可以是连续的值，比如声音、图像，称为模拟数据。也可以是离散的，如符号、文字，称为数字数据。
+				在计算机系统中，数据以二进制信息单元0,1的形式表示。
+
+
+
+
+--管理数据库
+--1。打开数据库
+--use 数据库名
+use mydb
+--2。查看数据信息
+--sp_helpdb 数据库名
+sp_helpdb mydb
+go
+---------创建数据库
+creat database 数据库名
+--3。重命名数据库
+--sp_renamedb '原名','新名'
+sp_renamedb 'aaa', 'mydb'
+go
+--4。修改数据库
+--（1）添加辅助数据文件（日志文件）
+--alter database 数据库名
+--add file (name='逻辑名',
+--filename='物理文件名',
+-- size=初始大小,
+-- maxsiz=最大,
+-- filegrowth=增长量
+-- )
+--（2）添加日志文件
+--alter database 数据库名
+--add log file (name='逻辑名',
+--filename='物理文件名',
+-- size=初始大小,
+-- maxsiz=最大,
+-- filegrowth=增长量
+-- )
+--给mydb数据库添加一个日志文件，逻辑为mydb_log2,初始大小3mb，
+--最大20mb,保存在mysql文件夹。
+alter database mydb 
+add log file( 
+name = 'mydb_log4', 
+filename = 'f:\MySQL\mydb_log4.ldf',
+ size = 3mb, 
+ maxsize = 20mb,
+  filegrowth = 10% ),
+(name = 'mydb_log5', 
+filename = 'f:\MySQL\mydb_log5.ldf'
+)
+ go 
+ --(3)删除文件
+ --alter database 数据库名
+ --remove file 文件名
+
+ alter database mydb
+ remove file mydb_log3
+ --(4)修改文件
+ --alter database 数据库名
+ --modify file
+ --(name=逻辑名,
+  --size=初始大小，
+  --maxsize=最大，
+  --filegrowth=增长量
+  --）
+  alter database mydb
+  modify file
+  (name='mydb_log2',
+  size=4mb,
+  maxsize=20mb,
+  filegrowth=2mb
+  )
+ sp_helpdb mydb
+ --5。删除数据库
+--drop database 数据库名
+--create,alter,drop定义语句
+--6。分离数据库
+EXEC sp_detach_db @dbname=mydb
+--7。附加数据库
+EXEC sp_attach_db @dbname=mydb,
+@filename1='D:\mysql\mydb_data.mdf',
+	     （路径）    （文件名）
+@filename2='D:\mysql\mydb_log.ldf'
+	     （路径）    （文件名）
+--8。删除数据库
+drop database mydb
+sp_helpdb mydb
+--9。查看表
+select * from 加数据表名
+--10。创建表
+create table major
+(majorno char(4) primary key,
+majorname varchar(30) not null,
+deptno char(2) constraint fk_xbbh references dept(deptno)
+) 
+--11。删除表
+drop table dept
+
+--12。用原有的表生成新表
+select * into 新表名 from 表名
+
+
+数据操作
+创建数据库---数据表---设置约束---添加数据---修改数据---查询数据--删除数据
+1.添加数据
+insert into 表名(字段名1，字段2，...)
+values
+(表达式1，表达式2，...)
+注意：表达式的数量与字段的数量要相同；
+          表达式的顺序与字段的顺序要对应
+insert into student(sno,sname,ssex,sbirth,shome,sdate,classno)
+values
+('19300004','马昆','男','2002-5-1','四川广元','2019-9-1','100101')
+
+2.修改数据(update)
+(1)修改单个字段
+update 表名 set 修改字段名=修改值
+[where 修改条件]
+
+update student set  shome='四川眉山'
+where sname='马昆'
+（2）修改多个字段
+update 表名 set 修改字段名1=修改值1，修改字段名2=修改值2，....
+[where 修改条件]
+update student set shome='四川广安',sibrht='2002-10-1'
+wher  sname='王丽丽' or sname='马昆'
+
+(3)用现有的表生成新表
+
+select * into 新表名  from 表名
+select *  into student2  from student
+(4)修改表中所有数据
+update 表名 set 修改字段名1=修改值1，修改字段名2=修改值2，....
+update student2 set shome='中国北京',sbirth='2001-1-1'
+3.删除数据(delete)
+delete from 表名
+[where 删除条件]
+将学生表中所有的男生删除
+
+insert  update  delete 操作语句
+create alter drop 定义语句
+mysql /oracle/sql server
