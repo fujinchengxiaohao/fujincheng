@@ -1,0 +1,39 @@
+数据查询(select)
+1.select 格式：
+select  字段名1,字段名2,... [into 新表名] from  表名
+[where 查询条件]
+[order by 字段名 asc(升序） | desc(降序)]  默认按升序排序
+[group by 字段名 ] 对查询结果分组
+[having 筛选条件 ] 对分组结果进行筛选
+用查询结果生成新表的时，可以使用into关键字
+
+2.类别：
+简单查询（单表）：从一个表中查询数据
+高级查询（多表）：从多个表中查询数据
+
+3.简单查询
+（1）选择若干列（投影）
+语法格式：
+select 列名  from  表名
+例1：查询学生表的姓名及住址
+select sname,shome from student
+例2：查询学生表的姓名和出生日期
+（2）选择表中的所有列
+语法格式：
+select  *  from  表名
+（3）查询计算列
+year(日期): 获得日期年份
+year(sbirth)
+getdate():获得当前计算机系统日期时间
+select sname,year(getdate())-year(sbirth) from student
+（4）别名的使用
+select sname,year(getdate())-year(sbirth) as age
+from student
+select sname,year(getdate())-year(sbirth)  age
+from student
+select sname,age=year(getdate())-year(sbirth) 
+from student
+例4：查询学生表的sname和shome,分别用姓名和住址表示
+select sname as '姓名',shome as '住址' from student
+select '姓名'=sname,'住址'=shome from student
+select sname 姓名,shome 住址 from student
