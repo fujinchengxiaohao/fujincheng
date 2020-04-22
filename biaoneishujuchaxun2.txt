@@ -1,0 +1,49 @@
+2020-4-22 软件19-1
+复习：查询表中的列
+select 列名  from 表名
+select tname,prof from teacher
+简单查询（二）
+一、查询表中的若干记录
+1、运算符
+（1）比较运算符：= 、!=、<>、>、<、>=、<=，在比较运符前均可加not
+（2）确定范围：between   and  / not  between  and 
+select * from teacher
+where tsbirth between '1970-1-1' and '1970-12-31'
+select * from teacher
+where  year(tsbirth) = 1970
+select * from teacher
+where tsbirth>='1970-1-1' and tsbirth<='1970-12-31'
+（3）确定集合：in  /  not in
+select tname,prof from teacher
+where tname  in ('杨学全','王丽丽','崔喜元')
+（4）字符匹配(模糊）：like  / not  like 
+ 通配符：%：任意个数的字符，_：任意一个字符
+例：查询姓杨的老师
+select * from teacher
+where tname like '杨%'
+例：查询姓名中包含亮的老师
+select tname from teacher 
+where tname like '%亮%'
+例：查询姓名中第二字是亮的老师
+（5）空值：is null /   is not null
+要求：为教师表添加一行数据：100004，张俊晖，男
+例：查询学历不为空的老师
+select * from teacher   
+where graduate  is not null
+例：查询学历为空的老师
+select * from teacher   
+where graduate  is  null
+（6）多重条件：and(与）   or（或）  not（非） && || !
+例：查询姓张男老师
+select * from teacher
+where tname  like '张%'   and  tsex='男'
+2.消除取值重复的行
+select  distinct  字段名 from  表名
+where 查询条件
+例：查询老师职称的类别
+select distinct prof from teacher
+3.限制返回行数
+select  top n 字段名  from  表名
+where  查询条件
+例：查询教师表的前3行。
+select top 3 * from teacher
