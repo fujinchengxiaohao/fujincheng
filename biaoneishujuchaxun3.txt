@@ -1,0 +1,43 @@
+1。复习：
+查询表中的列（投影)
+select  字段名  from  表名
+查询学生的出生年份
+select sname,year(sbirth) as year from student
+查询表中的行（记录）选择
+select 字段名 from  表名
+where  查询条件
+--查询姓王的学的姓名和出生年份
+select sname 姓名,YEAR(sbirth) 出生年份 from student 
+where sname like '王%'
+--查询住址是四川广安男生的信息
+select * from student where shome='四川广安' and ssex='男'
+2。查询结果排序
+语法格式：
+select  字段名  from  表名
+where 查询条件
+order by 字段名1 asc/desc,字段名2 asc/desc,....
+--查询学生的姓名和年龄，结果按年龄升序排序
+select sname ,year(getdate()) - year(sbirth) age
+from student
+order by age desc
+--查询学生的姓名和年龄，结果按年龄升序排序，当年龄相同时，按姓名升序排序
+select sname ,age=year(getdate()) - year(sbirth) from student
+order by age asc,sname asc
+3。集合函数：
+（1）count([distinct|all]*)：统计记录个数
+（2）count([distinct|all]列名）：统计一列值的个数
+（3）sum(列名）：计算一列的值的和（列的数据类型必须是数值型）
+（4）avg(列名)：计算一列的值的平均值（列的数据类型必须是数值型）
+（5）max(列名)：求一列中值的最大值
+（6）min(列名)：求一列中值的最小值
+--查询学生表中学生的人数
+select count(*) 学生人数 from student
+--查询男生的人数
+select 学生人数=count(*)  from student 
+where ssex='男'
+--查询学生表中性别类型个数
+select count(distinct ssex) 性别类型 
+from student
+--查询2002年出生的人数
+select count(*) as '2002年出生人数' from student 
+where year(sbirth) = 2002
