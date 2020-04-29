@@ -1,0 +1,272 @@
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+</head>
+<script>
+    window.onload = init;
+    //用户名，密码，二次密码，手机号码，用户输入验证码，提交按钮，系统给定验证码
+    var userName,psd,secPsd,phNum,userVerCode,submit,sysVerCode;
+    //信息提示：用户名，密码，二次密码，验证码，电话号码
+    var infoUserName,infoPsd,infoSecPsd,infoVerCode,infoPhNum;
+    function init(){
+        userName = document.getElementById("userName");
+        psd = document.getElementById("psd");
+        secPsd = document.getElementById("secPsd");
+        phNum = document.getElementById("phNum");
+        userVerCode = document.getElementById("userVerCode");
+        submit = document.getElementById("submit");
+        sysVerCode = document.getElementById("sysVerCode");
+
+        infoUserName = document.getElementById("infoUserName");
+        infoPsd = document.getElementById("infoPsd");
+        infoSecPsd = document.getElementById("infoSecPsd");
+        infoPhNum = document.getElementById("infoPhNum");
+        infoVerCode = document.getElementById("infoVerCode");
+
+        userName.onfocus = checkUserName;
+        userName.onblur = checkUserName; 
+
+        psd.onfocus = checkPsd;
+        psd.onblur  = checkPsd;
+
+        secPsd.onfocus = checkSecPsd;
+        secPsd.onblur  = checkSecPsd;
+
+        phNum.onfocus = checkPhNum;
+        phNum.onblur  = checkPhNum;
+
+        userVerCode.onfocus = showVerCode;
+        sysVerCode.onclick  = showVerCode;
+
+        userVerCode.onblur = checkVerCode;
+
+        submit.onclick = checkAll;
+    }
+    //合法字符字典
+    var dict = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890.-_";
+
+    //判断一个字符串是否包含特殊字符
+    //str:需要判断的字符串  返回值：若包含，返回true,否则返回false
+    //自己写，暂时不允许使用正则表达式
+    //str:Hyper@1314
+    function hasIllegalChar(str){
+        for(var i = 0;i < str.length;i++)
+        {
+            if(dict.indexOf(str.charAt(i)) == -1)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    //用于验证用户名输入是否正确，若正确，则提示信息为绿色，若错误，则获取焦点提示蓝色，失去焦点提示红色
+    //1.长度为0 2.长度不在6-18之间 3.包含了特殊字符(字母、数字._-以外的字符) 4.数字打头  5.特殊字符打头（.-_）
+    //6.用户名已注册（+5分） 7.敏感词汇(+5分)
+    function checkUserName(){
+        var str = userName.value; 
+
+        if(event.type == "focus")
+        {
+            infoUserName.style.color = "blue";    
+        }else{
+            infoUserName.style.color = "red";
+        }
+
+        if(str.length == 0)
+        {
+            infoUserName.innerHTML = "用户名不能为空";
+                        
+        }else   if(str.length < 6 || str.length > 18)
+                {
+                    infoUserName.innerHTML = "用户名长度不在6~18之间";
+                }else   if(Number(str.charAt(0))){
+                            infoUserName.innerHTML = "不能以数字打头";
+                        }else   if(str.charAt(0) == "_" || str.charAt(0) == "-" || str.charAt(0) == "."){
+                                    infoUserName.innerHTML = "不能以特殊字符打头";
+                                }else   if(hasIllegalChar(str) == true)
+                                        {
+                                            infoUserName.innerHTML = "不能包含特殊字符";        
+                                        }else{
+                                            infoUserName.innerHTML = "恭喜您，可以注册";
+                                            infoUserName.style.color = "green";
+                                        }
+    }
+    //用于验证密码输入是否正确，若正确，则提示信息为绿色，若错误，则获取焦点提示蓝色，失去焦点提示红色
+    function checkPsd(){
+
+    }
+    //用于验证二次密码输入是否正确，若正确，则提示信息为绿色，若错误，则获取焦点提示蓝色，失去焦点提示红色
+    function checkSecPsd(){
+
+    }
+    //用于验证手机号码输入是否正确，若正确，则提示信息为绿色，若错误，则获取焦点提示蓝色，失去焦点提示红色
+    function checkPhNum(){
+
+    }
+    //产生新的验证码，随机的字母+数字的格式
+    //图片类验证码，5分，微信二维码或短信验证码10分
+    function showVerCode(){
+
+    }
+    //用于验证用户输入验证码是否与系统给定验证码相同，若正确，则提示信息为绿色，若错误，则提示红色
+    function checkVerCode(){
+
+    }
+    //用于提交注册信息时，验证所有信息是否均正确，若正确，转入welcome.html，否则清空文本框内容
+    function checkAll(){
+        
+    }
+</script>
+<body>
+    <div>
+        <form> 
+            <span>用 户 名：</span><input  type="text" id="userName"><span>@tom.com</span><span id="infoUserName"></span><br>
+            <span>密    码：</span><input  type="password" id="psd"><span id="infoPsd"></span><br>
+            <span>确认密码：</span><input  type="password" id="secPsd"><span id="infoSecPsd"></span><br>
+            <span>手机号码：</span><input  type="text" id="phNum"><span id="infoPhNum"></span><br>
+            <span>验 证 码：</span><input  type="text" id="userVerCode"><span id="sysVerCode">1A5X</span><span id="infoVerCode"></span><br>
+            <input type="checkbox"><span>我已阅读并接受服务条款</span><br>
+            <input type="submit" value="注册" id="submit">
+        </form>
+    </div>  
+</body>
+</html>
