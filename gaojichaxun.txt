@@ -1,0 +1,36 @@
+2020-5-13 1-2 星期三 软件19-1（补）
+1.复习：简单查询
+select 字段名  from  表名
+where 查询条件
+order by 关键字 asc/desc
+group by 关键字  
+having 筛选条件
+集合函数：count  sum  avg   max  min
+
+2.高级查询（多表）
+从多个表中查询数据
+3.类型：连接查询、子查询
+4.连接查询：交叉连接、等值或非等值连接、自然连接、自身连接、外连接
+5.交叉连接:又称笛卡尔积，它是将两个表不加任何约束条件连接在一起，连接结果集中列是两个表中列的和，记录是两个表记录乘积。
+语法格式：
+select  字段名 from  表名1  cross join 表名2
+--完成dept和major两个交叉连接，结果按dept表中的deptno升序排序
+select * from dept cross join major
+order by dept.deptno
+6.等值连接与非等值连接（内连接）
+连查询中用来连接两个表的条件中的运算符是等号的称为等值连接，不是等号称为非等值连接。
+语法格式1：
+select 字段名 from  表名1 别名1 [inner] join 表名2 别名2
+on  别名1.字段名=别名2.字段名（连接条件）
+
+语法格式2：
+select 字段名 from  表名1 别名1 ， 表名2 别名2
+where  别名1.字段名=别名2.字段名（连接条件）
+
+--查询系部名称和对应的专业名称。
+select * from dept inner join major
+on dept.deptno=major.deptno
+
+select * from dept, major
+where dept.deptno=major.deptno
+--查询老师的姓名和系部名称
