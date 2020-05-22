@@ -1,0 +1,143 @@
+--1、  查询Student表中的所有记录
+select * from student
+go
+--2、  查询教师所有的系部编号，不能重复
+select  distinct  deptno from  teacher
+go
+--3、  查询Student表的所有记录，并按姓名降序排列
+select  * from  student
+order by sname  desc
+go 
+--4、  查询Score表中成绩在60到80之间的所有记录
+select * from score 
+where score>'60' and score<'80' 
+go
+--5、  查询Score表中成绩为85，86或88的记录
+select * from score
+where score in (80,85,90)
+go
+--6、  查询Student表中女同学的人数
+select count(*) from student
+where ssex='女'
+go
+--7、  查询计算机系老师的人数
+select  count(*)计算机系老师 from teacher t , dept d 
+where t.deptno=d.deptno and deptname ='计算机系'
+go
+--8、查询Score表中的最高分的学生学号和课程号
+select sno,cno from score
+where score in(select max(score)from score )
+go
+--9、查询数据库应用课程的平均分
+select avg(score)数据库应用平均分 from score
+where cno=(select cno from course where cname='数据库应用')
+go
+--10、查询学生表中姓张同学的平均年龄
+select avg(year(getdate())-year(sbirth)) from student
+where sname like '张%'
+go
+--11、查询每年出生的学生人数，显示年份和人数
+select distinct year(sbirth) 年份,count(*) 人数 from student
+group by sbirth
+go
+--12、查询所有学生的姓名、课程名称、成绩
+select sname,cname,score from student s,score e,course c
+where s.sno=e.sno and e.cno=c.cno 
+go
+--13、查询所有学生的姓名、课程名称、成绩，没有选课的学生也要显示
+select cname,sname,score from score sc  right outer join  student s 
+on s.sno=sc.sno 
+left join course c
+on c.cno=sc.cno
+--14、查询数据库应用课程的选课情况，显示选课人的姓名，课程名称，成绩
+select sname,cname,score from student s,score e,course c
+where s.sno=e.sno and e.cno=c.cno and cname='数据库应用'
+go
+--15、查询每门课程的课程名称，平均分，最高分，最低分
+select cname,max(score)最高分, min(score)最低分 ,avg(score) 平均分 from score s,course c
+where s.cno=c.cno
+group by cname
+go
+--16、查询和李平同年出生的所有学生信息
+select * from student
+where year(sbirth)= (select year(sbirth) from student where sname='李萍')
+go
+--17、查询杨学全老师任课的情况
+select tplan ,tname from teacher t,lesson l
+ where t.tno=l.tno and tname ='杨学全'
+ go      
+ 
+-- 18、查询选修某课程的同学人数多于5人的教师姓名
+select tname,count(*)人数 from teacher inner join lesson
+on teacher.tno=lesson.tno
+where cno in (select cno from score
+group by cno
+having count(*) > 5)
+group by tname
+
+--19、查询软件技术专业学生的名单
+select majorname,sname from class c left join student s
+on c.classno=s.classno
+left join major m 
+on m.majorno=c.majorno
+where majorname='软件技术'
+
+--20、查询每个系部的名称和专业名称，没有专业的系部也要显示出来
+select deptname,majorname from dept d left outer join major m
+on d.deptno=m.deptno
+go
+
+--21、查询每个系部的名称和专业数量，没有专业的系部也要显示出来
+select deptname,count(majorno)专业数量 from dept d full outer join major m
+on d.deptno=m.deptno
+group by deptname 
+go
+
+--22、查询所有教师和同学的姓名、性别和出生日期
+select sname,ssex,sbirth from student
+union 
+select tname,tsex,tbirth from teacher
+go
+
+--23、查询大于教师平均年龄的老师信息
+select * from teacher 
+where year(getdate())-year(tbirth)>= (select avg(year(getdate())-year(tbirth))from teacher)
+go
+
+--24、查询至少有2名男生的班号
+select classname,count(ssex)num from class c left outer join student s
+on c.classno=s.classno
+group by classname
+go   
+
+--25、查询student表中不姓王的同学记录
+select * from student
+where sname not like '王%'
+go
+
+--26、查询选课的学生名单
+select cname,sname from score sc  left outer join  student s 
+on s.sno=sc.sno 
+left join course c
+on c.cno=sc.cno
+go
+
+--27、查询年龄大于经济管理系所有老师年龄的教师信息
+select * from teacher 
+where year(getdate())-year(tbirth)>all (select (year(getdate())-year(tbirth))from teacher 
+where deptno=(select deptno from dept 
+where deptname='经济管理系')) 
+go
+
+--28、查询有授课任务的老师信息
+select tname,tplan from teacher t,lesson l
+where t.tno=l.tno
+go
+
+--29、查询被选修了的课程信息
+select distinct cname from course ,score
+where score. cno=course. cno
+
+--30、查询选了课的学生信息
+select sname,cname from student ,course ,score
+where student. sno=score. sno and score. cno=course. cno
