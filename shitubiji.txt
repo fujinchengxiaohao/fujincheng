@@ -1,0 +1,55 @@
+2020-6-3 7-8节 软件19-1
+1。什么视图？
+是一种数据库的对象，主要作用就是用来简化查询，是一种虚拟表。
+2。创建视图
+（1）图形界面：可以使用表/视图。
+（2）sql命令：
+create view 视图名[(列名1,列名2，....)]
+as
+select语句
+--创建视图v_a，查询所有学生的姓名和年龄。
+create view v_a
+as
+select sname,year(getdate())-year(sbirth)
+from student
+--创建视图v_ab,查询学生的姓名，课程名称，成绩。
+create view v_ab(姓名,课程名称,成绩)
+as
+select sname,cname,score from student ,score,course
+where student.sno=score.sno and score.cno=course.cno
+and cname='数据库应用'
+多表查询可以利用视图进行简化，变成单表查询，如下：
+select * from v_ab
+where 课程名称='数据库应用'
+3。修改视图：
+alter view 视图名[(列名1,列名2，....)]
+as
+select语句
+--修改视图v_ab,查询姓王的学生的选课情况
+alter view v_ab(姓名,课程名称,成绩)
+as
+select sname,cname,score from student ,score,course
+where student.sno=score.sno and score.cno=course.cno
+and sname like '王%'
+4.删除视图：drop  view 视图名
+5.利用视图修改数据：
+update v_ab set 姓名='王钢'
+where 姓名='王刚'
+select * from v_ab
+group by 姓名
+update v_ab set 姓名='王钢'
+where 姓名='王刚'
+
+select * from v_ab
+select * from student
+delete v_ab
+where 姓名='马昆'
+
+select *  from bb
+create view v_cc
+as
+select sno,sname from student
+
+select * from student
+delete v_cc
+where sname='马昆'
