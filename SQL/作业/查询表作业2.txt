@@ -1,0 +1,21 @@
+select * from teacher
+--1.查询1980年以前出生的老师人数
+select count(*) as '1980年以前出生人数' from teacher2 
+where year(tbirth) < 1980
+go
+--2.查询职称种类数
+select count(distinct prof) 职称类型 
+from teacher
+go
+--3.查询姓张男老师的人数
+select count(*) 人数 from teacher
+where tname like '张%' and tsex = '男'
+go
+--4.查询老师的姓名和年龄，并按年龄降序排列
+select tname ,year(getdate()) - year(tbirth) age
+from teacher
+order by age desc
+go
+--5.查询老师的平均年龄
+select  avg(year(getdate())-year(tbirth))平均年龄 from teacher
+go

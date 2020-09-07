@@ -1,0 +1,18 @@
+select * from teacher2
+go
+--查询老师的tname和prof
+select tname,prof from teacher2
+go
+--查询老师的年龄和姓名，使用别名
+select tname,year(getdate())-year(tbirth) as age
+from teacher2
+go
+--查询老师的姓名，职称，学历，并将结果生成新表tea，新表的字段名均使用中文
+select tname as'姓名',prof as '职称',graduate as '学历' from teacher2
+go
+--查询老师的姓名，出生日期，使用别名
+select tname as '姓名',tbirth as '出生日期'from teacher2
+go
+--查询王丽丽老师的职称
+select prof from teacher2 
+where tname ='王丽丽'

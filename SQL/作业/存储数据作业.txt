@@ -1,0 +1,51 @@
+create procedure p_b
+as 
+select sname from student
+where sname like '张%'
+go 
+
+execute p_b
+go
+
+drop procedure p_b
+go 
+
+--创建存储过程输入学生原来的名字完成学生更名
+create procedure p_rename @old char(20),@new char(20)
+as
+update student set sname =@new   --新名字
+where sname =@old   --旧名字
+go
+
+exec p_rename '王丽丽','李丽丽'
+go
+
+select *from dept
+go
+--创建存储过程p_insertxb，给系部表添加数据
+create procedure p_insertxb (@deptno varchar (20),@deptname varchar (20),@manager varchar (20))
+as
+insert into dept(deptno,deptname,manager)
+values (@deptno,@deptname,@manager)
+
+exec p_insertxb '05','软件技术系','复读机'
+
+select * from dept
+go
+
+
+--2。创建存储过程p_updatexb，更改系部的名称
+create procedure p_updatexb(@deptname varchar (20),@newdeptname varchar (20))
+as
+update dept set deptname=(@newdeptname)
+where deptname=@deptname 
+
+exec p_updatexb '软件技术系','软件系'
+go
+--3。创建存储过程p_delxb,根据输入的系部名称，将其删除
+create procedure p_delxb(@deptname varchar(20))
+as
+delete from dept 
+where deptname=@deptname
+
+exec p_delxb '软件系'

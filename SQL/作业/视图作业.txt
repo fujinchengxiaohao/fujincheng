@@ -1,0 +1,28 @@
+--1。创建视图view_a，查询计算机系老师的姓名
+create view view_a(姓名,系部)
+as
+select deptname ,tname  from teacher t , dept d 
+where t.deptno=d.deptno and deptname ='计算机系'
+go
+select * from view_a
+go 
+
+
+--2。修改视图view_a，查询计算机系和经济管理系老师的姓名和年龄
+alter view view_a(姓名,系部,年龄)
+as
+select deptname ,tname,year(getdate())-year(tbirth) from teacher t , dept d 
+where t.deptno=d.deptno and deptname ='计算机系'or deptname='经济管理系'
+go
+
+
+--3。创建视图view_b，查询所有学生的姓名，课程名称，成绩，没有选修课程的学生也要显示
+create view view_b(姓名,课程,成绩)
+as
+select cname,sname,score from score sc  right outer join  student s 
+on s.sno=sc.sno 
+left join course c
+on c.cno=sc.cno
+go
+
+select * from view_b

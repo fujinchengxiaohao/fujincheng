@@ -1,0 +1,129 @@
+--创建表TYPE
+create table TTYPE
+(tno char(1) primary key,
+type varchar(10) not null,
+count int 
+)
+go
+select * from TTYPE
+
+--为表TYPE添加数据
+insert into TTYPE(tno,type,count)
+values('1','学生','3'),
+('2','教师','5'),
+('3','校外读者','1')
+go
+
+--创建表reader
+create table reader
+(rno char(7) primary key,
+rname varchar(10),
+sex char(2),
+birth datetime,
+tno char (1) constraint fk_TYPE references TTYPE(tno))
+go
+
+select * from reader
+
+--为表reader添加数据
+insert into reader(rno,rname,sex,birth,tno)
+values ('0711101','唐僧','男','1988/9/8','1'),
+('0712101','南海观音','女','1988/9/3','1'),
+('0811101','猪八戒','男','1987/4/5','2'),
+('0811102','孙悟空','男','1988/5/6','2'),
+('0812101','铁扇公主','女','1990/5/9','3')
+go
+
+delete from borrow
+select * from borrow
+
+--创建借阅表
+create table borrow
+(rno char(7),
+bkid char(6),
+bdate datetime,
+gdate datetime)
+go
+
+--为表borrow添加数据
+insert into borrow(rno,bkid,bdate,gdate)
+values('0711101','F23.55','2008/5/26','2008/12/22'),
+('0711101','G11.22','2008/9/1',null),
+('0711101','G12.08','2008/8/26',null),
+('0812101','F12.24','2008/6/29',null),
+('0712101','G11.11','2008/10/21',null),
+('0712101','G12.09','2008/9/14','2008/11/8')
+go
+
+--1、查询图书表中书的编号和书名，结果按编号降序排序。
+select Bkid,Bkname from book
+order by Bkid desc
+go
+
+--2、查询读者表中所有姓孙的读者的编号和姓名，结果按编号降序排序。
+select *from reader
+select rno,rname from reader 
+where rname like '孙%'
+order by rno desc
+go
+
+--3、查询读者表中男女读者的人数，并将查询结果生成新表，表名为read1。
+select sex,count(*) 人数 from reader
+group by sex
+select * into reader2 from (select sex,count(*) 人数 from reader
+group by sex)b
+
+select *from reader
+--4、查询图书表中定价在20元以上的图书信息，并按定价升序排序。
+select Price from book
+where Price>'20'
+order by Price asc
+go
+
+--5、查询图书表中出版日期在2007年的图书信息，并将输出保存到临时表bktemp中。
+select * from book 
+where year(Pudate)='2007'
+
+select * into #bktemp from book
+where year(pudate)=2007
+
+select * from  bktemp 
+go 
+
+--6、查询图书表中每个出版社出版图书的数量，平均价格。
+select * from book
+
+select puhouse,count(*) 数量,avg(Price) from book
+group by puhouse
+go 
+
+7、查询图书表中出版社为青山作者姓梁的书籍信息。
+8、查询借阅表中每个月所借图书的数量。
+9、查询借阅表中所借图书超过2本的学生的编号和所借图书的数量。
+10、查询图书表中各书已入库多少年？
+11、查询教师读者借阅了哪些书？
+select bkname from book,reader,borrow,type
+where reader.rno=borrow.rno
+and borrow.bkid=book.bkid
+and reader.tno=type.tno
+and type='教师'
+
+12、将数据应用教材信息添加到图书表
+13、将青山出版社的图书定价增加五元。
+14、查询唐僧所借的图书信息。
+15、查询每位读者的借书信息，显示读者的姓名，图书的书名。
+16、查询读者类型是教师的读者信息。
+17、查询青山出版社图书的平均价格。
+18、查询每个出版社图书的平均价格。
+19、查询还期为空的图书的书名。
+20、查询与计算机文化基础同一个出版社的图书信息。
+21、查询每个读者所借图书的书名，没有借书的读者也显示出来。
+22、查询年龄比孙悟空大的读者姓名，出生日期，年龄。
+select rname,birth,year(getdate())-year(birth)
+from reader 
+where year(getdate())-year(birth)>
+(select year(getdate())-year(birth)
+from reader
+where rname='孙悟空')
+
+23、查询书名中包含程序设计的图书信息。

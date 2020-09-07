@@ -1,0 +1,84 @@
+use student
+select * from teacher
+--1.查询杨学全老师的姓名和职称
+select tname,prof from teacher
+where tname='杨学全'
+
+--2.查询姓张的老师的姓名和出生日期
+select tname,tbirth from teacher
+where tname like '张%'
+
+--3.统计男女教师的人数，显示性别及人数
+select tsex,count(*) 人数 from teacher
+group by tsex
+
+--4.统计每种职称对应的人数，显示职称和人数
+select prof,count(*) 人数 from teacher
+group by prof
+
+--5.查询每个系统老师的人数，显示系部编号及人数
+select deptno,count(*) 人数 from dept
+group by deptno
+
+--6.查询1980年出生的男老师人数
+select count(*) 人数 from teacher
+where year(tbirth)='1980'and tsex='男'
+go
+--7.查询每个系部老师的平均年龄，显示系部编号及平均年龄
+select deptno,avg(year(getdate())-year(tbirth))平均年龄 from teacher
+group by deptno
+
+--8.查询教授的平均年龄
+select avg(year(getdate())-year(tbirth))平均年龄 from teacher
+where prof='教授'
+
+--9.查询男女老师的最大年龄
+select max(year(getdate())-year(tbirth)) 最大年龄 from teacher
+where tsex='男'
+union
+select max(year(getdate())-year(tbirth)) 最大年龄 from teacher
+where tsex='女'
+
+--10.查询每种学历对应的人数，只显示人数大于2的结果
+select graduate,count(*) 人数 from teacher
+group by graduate
+having count(*)>2
+
+--11.查询姓名中含明的学生信息
+select * from student
+where sname like  '%明%'
+
+--12.查询100101班学生的平均年龄，最大年龄及最小年龄
+select avg(year(getdate())-year(sbirth))平均年龄,
+max(year(getdate())-year(sbirth)) 最大年龄,
+min(year(getdate())-year(sbirth)) 最小年龄 from student
+where classno='100101'
+
+--13.查询年龄最大的3个学生信息
+select top 3 (year(getdate())-year(sbirth)) from student
+
+--15.查询每个地区的学生人数，显示地区和人数
+select * from student
+select shome,count(*) 人数 from student 
+group by shome
+
+select * from student
+--16.查询每个班级男女生的人数，显示班级编号，性别及人数
+select classno,ssex,count(*) 人数 from student
+group by classno,ssex
+
+--17.查询每个地区学生的平均年龄，显示地区和平均年龄，结果按年龄升序排序
+select shome,avg(year(getdate())-year(sbirth)) 平均年龄 from student
+group by shome
+order by avg(year(getdate())-year(sbirth)) 
+--18.查询每个月出生的学生人数，显示月份和人数
+select month(sbirth) 月份,count(*) 人数 from student
+group by sbirth
+
+--19.查询年龄大于35的老师姓名和职称
+select tname,prof from teacher
+where year(getdate()) - year(tbirth) > 35
+
+--20.查询每个系部老师的平均年龄，显示系部编号和平均年龄
+select deptno,avg(year(getdate())-year(tbirth))平均年龄 from teacher
+group by deptno
