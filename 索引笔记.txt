@@ -1,0 +1,24 @@
+2020-6-8 5-6节 软件19-1
+1。复习：
+--创建存储过程p_insertxb,给系部表添加数据。
+
+--创建存储过程p_updatexb，更改系部的名称
+
+--创建存储过程p_delxb,根据输入的系部名称，将其删除
+2。索引：数据库中的一种对象，建立在数据表上，本质就是字段的排序规则（asc/desc)，提高数据的查询速度。
+3。分类：
+（1）聚集索引：会影响表中记录的顺序（与聚集索引顺序一致)，一个表中聚集索引只能有一个。
+（2）非聚集索引：不会影响表中记录的顺序，一个表中非聚集索引可以有多个。
+4.创建索引：
+（1）图形界面：表---表设计---索引/键。
+（2）sql命令：
+create [clustered | nonclustered] index 索引名
+on 表名（字段名1  asc | desc,字段名2 asc | desc...）
+--查看索引
+sp_help tea2
+sp_helpindex tea2
+--删除索引
+drop index  表名.索引名
+--为tea2表的tname字段创建非聚集索引，名ix_tname。
+alter index ix_tname
+on tea2(tname asc,prof desc)

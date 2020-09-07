@@ -1,0 +1,12 @@
+insert into reader(rno,rname,sex,birth,tno)
+values('0713101','·À³±¼Á','ÄĞ','1998/9/23','3')
+go
+select *from reader 
+
+update reader set rname='ËïĞ¡¿Õ'
+where rname='·À³±¼Á'
+go
+
+delete from reader
+where rname='ËïĞ¡¿Õ'
+go
