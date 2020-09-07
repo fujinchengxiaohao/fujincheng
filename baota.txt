@@ -1,0 +1,15 @@
+
+Bt-Panel: http://129.211.71.121:8888/3a31d0f7
+username: h7o9ab8e
+password: 8c288a7f
+
+
+数据库名：sql129_211_71_1
+
+用户：sql129_211_71_1
+
+密码：RdkTX8rDer
+
+访问站点：http://129.211.71.121/index.php
+
+http://129.211.71.121/wp-admin/
